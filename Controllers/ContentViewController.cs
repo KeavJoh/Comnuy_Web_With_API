@@ -8,5 +8,10 @@ namespace ComnuyWebWithAPI.Controllers
         {
             return View();
         }
+
+        public IActionResult MyContent()
+        {
+            return View();
+        }
     }
 }
