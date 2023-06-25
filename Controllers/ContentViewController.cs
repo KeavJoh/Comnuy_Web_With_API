@@ -1,7 +1,7 @@
 ﻿using ComnuyWebWithAPI.Data;
+using ComnuyWebWithAPI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ComnuyWebWithAPI.Controllers
 {
@@ -25,18 +25,11 @@ namespace ComnuyWebWithAPI.Controllers
             return View();
         }
 
-        [Authorize]
         public IActionResult CreateOrEditTool()
         {
-            var toolGroups = GetToolGroups();
-            ViewBag.ToolGroups = new SelectList(toolGroups);
+            var toolGroups = _context.ToolGroups.ToList(); // Assuming you have DbSet<ToolGroup> in your ApplicationDbContext
+            ViewBag.ToolGroups = toolGroups;
             return View();
-        }
-
-        private List<string> GetToolGroups()
-        {
-            var toolGroups = _context.ToolGroups.Select(t => t.Name).ToList();
-            return toolGroups;
         }
     }
 }

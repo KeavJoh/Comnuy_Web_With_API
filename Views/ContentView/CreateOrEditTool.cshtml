@@ -1,6 +1,6 @@
-﻿@model ComnuyWebWithAPI.Models.Tool
+﻿@model ComnuyWebWithAPI.Models.Tool 
 
-<form asp-controller="ContentView" asp-action="CreateOrEditTool enctype="multipart/form-data">
+<form asp-controller="ContentView" asp-action="CreateOrEditTool" enctype="multipart/form-data">
 
     <div class="card-header">
         <h5>Tool erstellen oder bearbeiten</h5>
@@ -33,12 +33,11 @@
                 <input class="form-control" asp-for="WebAddress" type="url" placeholder="Webseite" />
             </div>
             <div class="col">
-                <select class="form-control" asp-for="ToolGroup" placeholder="Plattform">
-                    <option value="">Bitte wählen...</option>
+                <select class="form-control form-select" asp-for="ToolGroup">
                     @foreach (var toolGroup in ViewBag.ToolGroups)
                     {
                         <option value="@toolGroup.Id">@toolGroup.Name</option>
-                    } 
+                    }
                 </select>
             </div>
         </div>
