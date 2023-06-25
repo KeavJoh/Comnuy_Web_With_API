@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ComnuyWebWithAPI.Controllers
 {
@@ -9,6 +10,7 @@ namespace ComnuyWebWithAPI.Controllers
             return View();
         }
 
+        [Authorize]
         public IActionResult MyContent()
         {
             return View();
