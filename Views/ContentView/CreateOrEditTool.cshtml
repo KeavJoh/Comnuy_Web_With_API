@@ -1,0 +1,57 @@
+﻿@model ComnuyWebWithAPI.Models.Tool
+
+<form asp-controller="ContentView" asp-action="CreateOrEditTool enctype="multipart/form-data">
+
+    <div class="card-header">
+        <h5>Tool erstellen oder bearbeiten</h5>
+    </div>
+
+    <div class="card-body">
+
+        <input hidden asp-for="Id" />
+
+        <div class="row mb-3">
+            <div class="col">
+                <input class="form-control" asp-for="Name" type="text" placeholder="Name des Tool" />
+            </div>
+            <div class="col">
+                <input class="form-control" asp-for="ShortDescription" type="text" maxlength="100" placeholder="Kurze Beschreibung" />
+                <small class="text-muted">
+                    <span id="charCount">0</span> / 100 Zeichen
+                </small>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col">
+                <textarea rows="6" class="form-control" asp-for="Description" placeholder="Ausführliche Beschreibung"></textarea>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col">
+                <input class="form-control" asp-for="WebAddress" type="url" placeholder="Webseite" />
+            </div>
+            <div class="col">
+                <select class="form-control" asp-for="ToolGroup" placeholder="Plattform">
+                    <option value="">Bitte wählen...</option>
+                    @foreach (var toolGroup in ViewBag.ToolGroups)
+                    {
+                        <option value="@toolGroup.Id">@toolGroup.Name</option>
+                    } 
+                </select>
+            </div>
+        </div>
+
+    </div>
+
+</form>
+
+<script>
+    const input = document.querySelector('input[asp-for="ShortDescription"]');
+    const charCount = document.getElementById('charCount');
+
+    input.addEventListener('input', function () {
+        charCount.textContent = this.value.length;
+    });
+</script>
