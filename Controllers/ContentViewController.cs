@@ -25,11 +25,17 @@ namespace ComnuyWebWithAPI.Controllers
             return View();
         }
 
+        [Authorize]
         public IActionResult CreateOrEditTool()
         {
-            var toolGroups = _context.ToolGroups.ToList(); // Assuming you have DbSet<ToolGroup> in your ApplicationDbContext
+            var toolGroups = _context.ToolGroups.ToList();
             ViewBag.ToolGroups = toolGroups;
             return View();
         }
+
+        //public IActionResult SubmitCreateOrEditTool(Tool tool)
+        //{
+        //    tool.Owner = User.Identity.Name;
+        //}
     }
 }
