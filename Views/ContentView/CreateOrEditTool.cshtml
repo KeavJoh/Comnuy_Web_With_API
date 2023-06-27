@@ -47,6 +47,8 @@
             <input type="file" class="form-control" id="formFile" name="file" multiple accept="image/*" max="5">
         </div>
 
+@*        <div id="imagePreview"></div>*@
+
         <div class="card-footer mt-4">
             <button class="btn btn-primary" type="submit">Speichern</button>
         </div>
@@ -56,6 +58,8 @@
 </form>
 
 <script>
+
+    // Counter for shortDescription
     const inputElement = document.getElementById('shortDescriptionInput');
     const charCountElement = document.getElementById('charCount');
 
@@ -63,4 +67,31 @@
         const charCount = inputElement.value.length;
         charCountElement.querySelector('span').textContent = charCount;
     });
+
+
+    // Preview image loader
+    //function showImagePreview(input) {
+    //    var previewContainer = document.getElementById("imagePreview");
+    //    previewContainer.innerHTML = "";
+
+    //    if (input.files) {
+    //        var filesAmount = input.files.length;
+    //        for (i = 0; i < filesAmount; i++) {
+    //            var reader = new FileReader();
+
+    //            reader.onload = function (event) {
+    //                var image = document.createElement("img");
+    //                image.src = event.target.result;
+    //                image.className = "preview-image";
+    //                previewContainer.appendChild(image);
+    //            }
+
+    //            reader.readAsDataURL(input.files[i]);
+    //        }
+    //    }
+    //}
+
+    //document.getElementById("formFile").addEventListener("change", function () {
+    //    showImagePreview(this);
+    //});
 </script>
