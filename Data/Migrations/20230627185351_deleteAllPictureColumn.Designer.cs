@@ -4,6 +4,7 @@ using ComnuyWebWithAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ComnuyWebWithAPI.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230627185351_deleteAllPictureColumn")]
+    partial class deleteAllPictureColumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -43,21 +45,6 @@ namespace ComnuyWebWithAPI.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Owner")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Picture_1")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Picture_2")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Picture_3")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Picture_4")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Picture_5")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ShortDescription")
