@@ -1,6 +1,6 @@
 ﻿@model ComnuyWebWithAPI.Models.Tool 
 
-<form asp-controller="ContentView" asp-action="CreateOrEditTool" enctype="multipart/form-data">
+<form asp-controller="ContentView" asp-action="SubmitCreateOrEditTool" enctype="multipart/form-data">
 
     <div class="card-header">
         <h5>Tool erstellen oder bearbeiten</h5>
@@ -40,6 +40,11 @@
                     }
                 </select>
             </div>
+        </div>
+
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="formFile">Bilder (max. 5)</label>
+            <input type="file" class="form-control" id="formFile" name="file" multiple accept="image/*" max="5">
         </div>
 
         <div class="card-footer mt-4">
