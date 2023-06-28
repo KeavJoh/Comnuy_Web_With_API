@@ -1,5 +1,35 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model _MyContentViewModel
+
+<table id="MyContentToolTable" class="table table-bordered table-striped table-hover pt-2">
+    <thead class="table-dark">
+        <tr>
+            <th>Plattform</th>
+            <th>Name</th>
+            <th>Kurzbeschreibung</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @{
+            foreach(Tool tool in Model.Tools)
+            {
+                <tr>
+                <td>
+                        @{
+                            // Den Namen der Toolgruppe anhand der ID abrufen
+                            var toolGroup = Model.ToolGroups.FirstOrDefault(tg => tg.Id == tool.ToolGroup);
+                            if (toolGroup != null)
+                            {
+                                @toolGroup.Name
+                            }
+                        }
+                </td>
+                <td>@tool.Name</td>
+                <td>@tool.ShortDescription</td>
+                </tr>
+            }
+        }
+
+    </tbody>
+</table>
