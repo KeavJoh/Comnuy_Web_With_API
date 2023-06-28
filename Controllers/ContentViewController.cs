@@ -45,6 +45,7 @@ namespace ComnuyWebWithAPI.Controllers
             return View();
         }
 
+        [Authorize]
         public IActionResult SubmitCreateOrEditTool(Tool tool, IFormFile file)
         {
             tool.Owner = User.Identity.Name;
@@ -74,7 +75,7 @@ namespace ComnuyWebWithAPI.Controllers
             _context.Tools.Add(tool);
             _context.SaveChanges();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("MyContent");
         }
     }
 }
