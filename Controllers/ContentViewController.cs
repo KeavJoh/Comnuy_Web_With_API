@@ -5,6 +5,7 @@ using ComnuyWebWithAPI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using AspNetCore;
 
 namespace ComnuyWebWithAPI.Controllers
 {
@@ -27,7 +28,14 @@ namespace ComnuyWebWithAPI.Controllers
         [Authorize]
         public IActionResult MyContent()
         {
-            return View();
+            var toolsFromDb = _context.Tools.Where(x => x.Owner == User.Identity.Name).ToList();
+
+            var model = new _MyContentViewModel
+            {
+                Tools = toolsFromDb,
+
+            };
+            return View(model);
         }
 
         [Authorize]
