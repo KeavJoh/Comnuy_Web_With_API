@@ -1,16 +1,5 @@
 ﻿@model _MyContentViewModel
 
-<table id="MyContentToolTable" class="table table-bordered table-striped table-hover pt-2">
-    <thead class="table-dark">
-        <tr>
-            <th>Plattform</th>
-            <th>Name</th>
-            <th>Kurzbeschreibung</th>
-        </tr>
-    </thead>
-
-    <tbody>
-
         @{
             foreach(Tool tool in Model.Tools)
             {
@@ -30,6 +19,3 @@
                 </tr>
             }
         }
-
-    </tbody>
-</table>

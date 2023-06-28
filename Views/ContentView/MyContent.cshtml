@@ -8,6 +8,29 @@
     <button class="btn btn-secondary">Meine Tools</button>
 </div>
 
-<div>
+
+<table id="myContentToolTable" class="table table-bordered table-striped table-hover pt-2">
+    <thead class="table-dark">
+        <tr>
+            <th>Plattform</th>
+            <th>Name</th>
+            <th>Kurzbeschreibung</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <partial name="_MyContentToolPartial" />
+    </tbody>
+</table>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $('#myContentToolTable').DataTable();
+        });
+    </script>
+}
+
+@*<div>
     <partial name="_MyContentToolPartial" />
-</div>
+</div>*@
