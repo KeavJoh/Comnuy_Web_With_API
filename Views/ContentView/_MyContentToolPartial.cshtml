@@ -17,7 +17,7 @@
                     <td>@tool.Name</td>
                     <td>@tool.ShortDescription</td>
                     <td>
-                        <a class="btn btn-warning" asp-route-itemid="@tool.Id" asp-controller="ContentView" asp-action="CreateOrEditTool">Bearbeiten</a>
+                        <a class="btn btn-warning" asp-route-id="@tool.Id" asp-controller="ContentView" asp-action="CreateOrEditTool">Bearbeiten</a>
                         <button onclick="onClickedDeleteButton()" class="btn btn-danger">Löschen</button>
                     </td>
                 </tr>

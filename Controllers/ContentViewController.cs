@@ -38,9 +38,29 @@ namespace ComnuyWebWithAPI.Controllers
         }
 
         [Authorize]
-        public IActionResult CreateOrEditTool()
+        public IActionResult CreateOrEditTool(int id)
         {
             var toolGroups = _context.ToolGroups.ToList();
+
+            if (id != 0)
+            {
+                var toolPostingFromDb = _context.Tools.SingleOrDefault(x => x.Id == id);
+                if (toolPostingFromDb.Owner != User.Identity.Name)
+                {
+                    return Unauthorized();
+                }
+
+                if (toolPostingFromDb != null)
+                {
+                    ViewBag.ToolGroups = toolGroups;
+                    return View(toolPostingFromDb);
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+
             ViewBag.ToolGroups = toolGroups;
             return View();
         }
