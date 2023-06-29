@@ -79,17 +79,22 @@ namespace ComnuyWebWithAPI.Controllers
                 string generatedGuidFolder = Guid.NewGuid().ToString("N").Substring(0, guidLenghtFolder);
                 string generatedGuidPicture = Guid.NewGuid().ToString("N").Substring(0, guidLenghtPicture);
 
+                string toolFolderString = tool.ToolGroup + "_" + generatedGuidFolder + "_" + tool.Name;
+
                 string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "Pictures\\Tool\\");
-                string toolFolder = Path.Combine(uploadsFolder, tool.ToolGroup + "_" + generatedGuidFolder + "_" + tool.Name);
+                string toolFolder = Path.Combine(uploadsFolder, toolFolderString);
                 Directory.CreateDirectory(toolFolder);
-                string uniqueFileName = tool.Name + "_" + generatedGuidPicture;
+
+                string fileExtension = Path.GetExtension(file.FileName);
+
+                string uniqueFileName = $"{tool.Name}_{generatedGuidPicture}{fileExtension}";
                 string filePath = Path.Combine(toolFolder, uniqueFileName);
                 using (var fileStream = new FileStream(filePath, FileMode.Create))
                 {
                     file.CopyTo(fileStream);
                 }
 
-                tool.Picture_1 = Path.Combine("Pictures/Tool/", toolFolder, uniqueFileName);
+                tool.Picture_1 = Path.Combine("\\Pictures\\Tool\\", toolFolderString, uniqueFileName);
             }
 
             _context.Tools.Add(tool);

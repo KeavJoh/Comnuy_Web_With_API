@@ -10,6 +10,22 @@
 
         <input hidden asp-for="Id" />
 
+            @{
+            if (Model != null && Model.Id != 0 && Model.Picture_1 != null)
+            {
+                <div>
+                    <img class="rounded mx-auto d-block img" width="200" height="200" src="@Model.Picture_1">
+                </div>
+            } 
+            //else
+            //{
+            //    <div>
+            //        <img bd-placeholder-img rounded mx-auto d-block width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+            //    </div>
+            //}
+            
+            }
+
         <div class="row mb-2">
             <div class="col">
                 <input class="form-control" asp-for="Name" type="text" placeholder="Name des Tool" />
