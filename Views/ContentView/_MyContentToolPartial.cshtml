@@ -4,18 +4,22 @@
             foreach(Tool tool in Model.Tools)
             {
                 <tr>
-                <td>
-                        @{
-                            // Den Namen der Toolgruppe anhand der ID abrufen
-                            var toolGroup = Model.ToolGroups.FirstOrDefault(tg => tg.Id == tool.ToolGroup);
-                            if (toolGroup != null)
-                            {
-                                @toolGroup.Name
+                    <td>
+                            @{
+                                // Den Namen der Toolgruppe anhand der ID abrufen
+                                var toolGroup = Model.ToolGroups.FirstOrDefault(tg => tg.Id == tool.ToolGroup);
+                                if (toolGroup != null)
+                                {
+                                    @toolGroup.Name
+                                }
                             }
-                        }
-                </td>
-                <td>@tool.Name</td>
-                <td>@tool.ShortDescription</td>
+                    </td>
+                    <td>@tool.Name</td>
+                    <td>@tool.ShortDescription</td>
+                    <td>
+                        <a class="btn btn-warning" asp-route-itemid="@tool.Id" asp-controller="ContentView" asp-action="CreateOrEditTool">Bearbeiten</a>
+                        <button onclick="onClickedDeleteButton()" class="btn btn-danger">Löschen</button>
+                    </td>
                 </tr>
             }
         }
