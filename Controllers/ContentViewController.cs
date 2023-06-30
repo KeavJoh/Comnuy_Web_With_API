@@ -71,7 +71,14 @@ namespace ComnuyWebWithAPI.Controllers
         public IActionResult SubmitCreateOrEditTool(Tool tool, IFormFile file)
         {
             var toolId = tool.Id;
+            string uploadsFolder;
+            string toolFolder;
+            string fileExtension;
+            string uniqueFileName;
+            string filePath;
+
             tool.LastChangesDate = DateTime.UtcNow;
+            tool.LastChangeUser = User.Identity.Name;
 
             if (toolId == 0)
             {
@@ -82,14 +89,14 @@ namespace ComnuyWebWithAPI.Controllers
 
                     string toolFolderString = nextDbIdString;
 
-                    string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "Pictures\\Tool\\");
-                    string toolFolder = Path.Combine(uploadsFolder, toolFolderString);
+                    uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "Pictures\\Tool\\");
+                    toolFolder = Path.Combine(uploadsFolder, toolFolderString);
                     Directory.CreateDirectory(toolFolder);
 
-                    string fileExtension = Path.GetExtension(file.FileName);
+                    fileExtension = Path.GetExtension(file.FileName);
 
-                    string uniqueFileName = $"{tool.Name}_{nextDbIdString}{fileExtension}";
-                    string filePath = Path.Combine(toolFolder, uniqueFileName);
+                    uniqueFileName = $"{tool.Name}_{nextDbIdString}{fileExtension}";
+                    filePath = Path.Combine(toolFolder, uniqueFileName);
                     using (var fileStream = new FileStream(filePath, FileMode.Create))
                     {
                         file.CopyTo(fileStream);
@@ -118,11 +125,11 @@ namespace ComnuyWebWithAPI.Controllers
                     {
                         fileInfo.Delete();
                     }
-                    string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "Pictures\\Tool\\");
-                    string toolFolder = Path.Combine(uploadsFolder, toolFromDbId);
-                    string fileExtension = Path.GetExtension(file.FileName);
-                    string uniqueFileName = $"{tool.Name}_{toolFromDbId}{fileExtension}";
-                    string filePath = Path.Combine(toolFolder, uniqueFileName);
+                    uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "Pictures\\Tool\\");
+                    toolFolder = Path.Combine(uploadsFolder, toolFromDbId);
+                    fileExtension = Path.GetExtension(file.FileName);
+                    uniqueFileName = $"{tool.Name}_{toolFromDbId}{fileExtension}";
+                    filePath = Path.Combine(toolFolder, uniqueFileName);
                     using (var fileStream = new FileStream(filePath, FileMode.Create))
                     {
                         file.CopyTo(fileStream);
@@ -135,7 +142,7 @@ namespace ComnuyWebWithAPI.Controllers
                 toolFromDb.ShortDescription = tool.ShortDescription;
                 toolFromDb.WebAddress = tool.WebAddress;
                 toolFromDb.ToolGroup = tool.ToolGroup;
-                toolFromDb.LastChangeUser = User.Identity.Name;
+                toolFromDb.LastChangeUser = tool.LastChangeUser;
                 toolFromDb.LastChangesDate = DateTime.UtcNow;
 
 
