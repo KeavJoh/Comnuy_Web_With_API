@@ -2,7 +2,7 @@
 using ComnuyWebWithAPI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.EntityFrameworkCore;
 
 namespace ComnuyWebWithAPI.Controllers
 {
@@ -101,7 +101,28 @@ namespace ComnuyWebWithAPI.Controllers
                 tool.Picture_1 = Path.Combine("\\Pictures\\Tool\\Placeholder\\placeholder.png");
             }
 
-            _context.Tools.Add(tool);
+            if (tool.Id == null)
+            {
+                _context.Tools.Add(tool);
+            } else
+            {
+                var toolFromDb = _context.Tools.FirstOrDefault(x => x.Id == tool.Id);
+
+                if (toolFromDb == null)
+                {
+                    return NotFound();
+                }
+
+                toolFromDb.Name = tool.Name;
+                toolFromDb.Description = tool.Description;
+                toolFromDb.ShortDescription = tool.ShortDescription;
+                toolFromDb.WebAddress = tool.WebAddress;
+                toolFromDb.ToolGroup = tool.ToolGroup;
+                toolFromDb.Picture_1 = tool.Picture_1;
+                toolFromDb.LastChangeUser = User.Identity.Name;
+                toolFromDb.LastChangesDate = DateTime.UtcNow;
+            }
+
             _context.SaveChanges();
 
             return RedirectToAction("MyContent");
