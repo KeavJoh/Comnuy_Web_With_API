@@ -13,8 +13,8 @@
             @{
             if (Model != null && Model.Id != 0 && Model.Picture_1 != null)
             {
-                <div>
-                    <img class="rounded mx-auto d-block img" width="200" height="200" src="@Model.Picture_1">
+                <div class="d-flex justify-content-start mb-5">
+                    <img class="rounded d-block img border" width="200" height="200" src="@Model.Picture_1">
                 </div>
             } 
             //else
