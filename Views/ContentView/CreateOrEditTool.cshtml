@@ -52,6 +52,22 @@
             </div>
         </div>
 
+        @{
+            if (Model != null && Model.Id != 0 && Model.Picture_1 != null && Model.Picture_1 == "\\Pictures\\Tool\\Placeholder\\placeholder.png")
+            {
+                <div>
+                    <p class="text-info">Durch das Auswählen eines neuen Bildes, wird der Platzhalter ersetzt!</p>
+                </div>
+            }
+            else if (Model != null && Model.Id != 0 && Model.Picture_1 != null)
+            {
+                <div>
+                    <p class="text-danger">Durch das Auswählen eines neuen Bildes, wird das vorhandene ersetzt!</p>
+                </div>
+            }
+
+        }
+
         <div class="input-group mb-3">
             <label class="input-group-text" for="formFile">Bild</label>
             <input type="file" class="form-control" id="formFile" name="file" @*multiple*@ accept="image/*" @*max="5"*@>
@@ -78,6 +94,7 @@
         charCountElement.querySelector('span').textContent = charCount;
     });
 
+    //Preview image after select
 
     // Preview image loader
     //function showImagePreview(input) {
