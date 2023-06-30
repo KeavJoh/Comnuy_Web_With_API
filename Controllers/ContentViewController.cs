@@ -96,6 +96,10 @@ namespace ComnuyWebWithAPI.Controllers
 
                 tool.Picture_1 = Path.Combine("\\Pictures\\Tool\\", toolFolderString, uniqueFileName);
             }
+            else
+            {
+                tool.Picture_1 = Path.Combine("\\Pictures\\Tool\\Placeholder\\placeholder.png");
+            }
 
             _context.Tools.Add(tool);
             _context.SaveChanges();
