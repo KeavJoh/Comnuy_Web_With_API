@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace ComnuyWebWithAPI.Controllers
 {
@@ -21,7 +22,8 @@ namespace ComnuyWebWithAPI.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var toolsFromDb = _context.Tools.ToList();
+            return View(toolsFromDb);
         }
 
         [Authorize]
@@ -84,7 +86,16 @@ namespace ComnuyWebWithAPI.Controllers
             {
                 if (file != null)
                 {
-                    var nextDbId = _context.Tools.Max(t => t.Id) + 1;
+
+                    int nextDbId;
+                    if (_context.Tools.Any())
+                    {
+                        nextDbId = _context.Tools.Max(t => t.Id) + 1;
+                    }
+                    else
+                    {
+                        nextDbId = 1;
+                    }
                     string nextDbIdString = nextDbId.ToString();
 
                     string toolFolderString = nextDbIdString;
