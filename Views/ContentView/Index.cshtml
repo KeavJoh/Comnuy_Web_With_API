@@ -1,4 +1,18 @@
-﻿@model List<Tool>
+﻿@model _MyContentViewModel
+<link rel="stylesheet" href="site.css">
 
+<table id="contentToolTable" class="table table-bordered table-striped table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th class="text-center"></th>
+            <th class="text-center">Tool</th>
+            <th class="text-center">Typ</th>
+            <th class="text-center">Erstellt von</th>
+            <th class="text-center">letzte Änderung</th>
+        </tr>
+    </thead>
+    <tbody>
+        <partial name="_ContentToolPartial" />
+    </tbody>
+</table>
 
-<partial name="_ContentToolPartial"/>

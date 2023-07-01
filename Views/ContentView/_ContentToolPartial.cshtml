@@ -1,19 +1,32 @@
-﻿@model List<Tool>
-
-<div class="list-group">
+﻿@model _MyContentViewModel
+<link rel="stylesheet" href="site.css">
 
     @{
-        foreach (Tool tool in Model)
+        foreach (Tool tool in Model.Tools)
         {
-            <a href="#" data-bs-toogle="model" class="list-group-item list-group-item-action" aria-current="true">
-                <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">@tool.Name</h5>
-                    <small>@tool.ShortDescription</small>
-                </div>
-                <p class="mb-1">@tool.ToolGroup</p>
-                <small>@tool.Owner</small>
-            </a>
+            <tr>
+                <td>
+                    <div style="display: flex; justify-content: center; align-items: center;">
+                        <img class="rounded d-block img" width="100" height="80" src="@tool.Picture_1">
+                    </div>
+                </td>
+                <td class="text-center align-middle">
+                    <div>
+                        <span style="display: block;">@tool.Name</span>
+                        <span style="display: block;">@tool.ShortDescription</span>
+                    </div>
+                </td>
+                <td class="text-center align-middle">
+                    @{
+                        var toolGroup = Model.ToolGroups.FirstOrDefault(tg => tg.Id == tool.ToolGroup);
+                        if (toolGroup != null)
+                        {
+                            @toolGroup.Name
+                        }
+                    }
+                </td>
+                <td class="text-center align-middle">@tool.Owner</td>
+                <td class="text-center align-middle">@tool.LastChangesDate.ToShortDateString()</td>
+            </tr>
         }
     }
-
-</div>

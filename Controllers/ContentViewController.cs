@@ -23,7 +23,15 @@ namespace ComnuyWebWithAPI.Controllers
         public IActionResult Index()
         {
             var toolsFromDb = _context.Tools.ToList();
-            return View(toolsFromDb);
+            var toolGroupsFromDb = _context.ToolGroups.ToList();
+
+            var model = new _MyContentViewModel
+            {
+                Tools = toolsFromDb,
+                ToolGroups = toolGroupsFromDb
+
+            };
+            return View(model);
         }
 
         [Authorize]
