@@ -20,15 +20,25 @@ namespace ComnuyWebWithAPI.Controllers
             _webHostEnvironment = webHostEnvironment;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int selectedType)
         {
-            var toolsFromDb = _context.Tools.ToList();
-            var toolGroupsFromDb = _context.ToolGroups.ToList();
+            List<Tool> toolsFromDb;
+            List<ToolGroup> toolGroupsFromDb;
+
+            if (selectedType == 1)
+            {
+                toolsFromDb = _context.Tools.ToList();
+            } else
+            {
+                toolsFromDb = _context.Tools.Where(x => x.ToolGroup == selectedType).ToList();
+            }
+            toolGroupsFromDb = _context.ToolGroups.ToList();
 
             var model = new _MyContentViewModel
             {
                 Tools = toolsFromDb,
-                ToolGroups = toolGroupsFromDb
+                ToolGroups = toolGroupsFromDb,
+                SelectedToolGroupId = selectedType
 
             };
             return View(model);

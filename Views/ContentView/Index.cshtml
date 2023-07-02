@@ -1,6 +1,19 @@
 ﻿@model _MyContentViewModel
-<link rel="stylesheet" href="site.css">
 
+<div class="col">
+    <select id="toolTypeSelectDropDown" class="form-control form-select" onchange="reloadIndexPage(this.value)">
+        @foreach (var toolGroup in Model.ToolGroups)
+        {
+            @if (toolGroup.Id == Model.SelectedToolGroupId)
+            {
+                <option value="@toolGroup.Id" selected>@toolGroup.Name</option>
+            } else
+            {
+                <option value="@toolGroup.Id">@toolGroup.Name</option>
+            }
+        }
+    </select>
+</div>
 <table id="contentToolTable" class="table table-bordered table-striped table-hover">
     <thead class="table-dark">
         <tr>
@@ -11,8 +24,21 @@
             <th class="text-center">letzte Änderung</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody id="contentToolTable_ContentToolPartial">
         <partial name="_ContentToolPartial" />
     </tbody>
 </table>
+
+@section scripts {
+    <script>
+        $(document).ready(function() {
+            $('#contentToolTable').DataTable();
+        });
+
+        function reloadIndexPage(selectedType) {
+            var url = '@Url.Action("Index")' + '?selectedType=' + selectedType;
+            window.location.href = url;
+        }
+    </script>
+}
 
