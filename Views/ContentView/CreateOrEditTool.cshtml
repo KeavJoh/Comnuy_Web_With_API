@@ -46,7 +46,10 @@
                 <select class="form-control form-select" asp-for="ToolGroup">
                     @foreach (var toolGroup in ViewBag.ToolGroups)
                     {
-                        <option value="@toolGroup.Id">@toolGroup.Name</option>
+                        if (toolGroup.Id != 1)
+                        {
+                            <option value="@toolGroup.Id">@toolGroup.Name</option>
+                        }
                     }
                 </select>
             </div>
