@@ -47,8 +47,8 @@ namespace ComnuyWebWithAPI.Controllers
         public IActionResult ShowToolDetail(int toolId)
         {
             Tool toolFromDb;
-            List<ToolGroup> toolGroupsFromDb;
-            toolGroupsFromDb = _context.ToolGroups.ToList();
+            ToolGroup toolGroupFromDb;
+            toolGroupFromDb = _context.ToolGroups.SingleOrDefault(x => x.Id == toolId);
 
             if (toolId != 0)
             {
@@ -58,7 +58,7 @@ namespace ComnuyWebWithAPI.Controllers
 
                 if (toolFromDb != null)
                 {
-                    ViewBag.ToolGroups = toolGroupsFromDb;
+                    ViewBag.ToolGroups = toolGroupFromDb;
                     return View(toolFromDb);
                 } else
                 {
@@ -66,7 +66,7 @@ namespace ComnuyWebWithAPI.Controllers
                 }
             } 
 
-            ViewBag.ToolGroups = toolGroupsFromDb;
+            ViewBag.ToolGroups = toolGroupFromDb;
 
             return View();
         }

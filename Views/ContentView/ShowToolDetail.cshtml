@@ -1,8 +1,18 @@
 ﻿@model ComnuyWebWithAPI.Models.Tool
 
 <div class="row">
-    <div class="col-6">
+    <div class="col-6 d-flex flex-column justify-content-center">
         <h3>@Model.Name</h3>
         <h4>@Model.ShortDescription</h4>
+    </div>
+    <div class="col-6 d-flex justify-content-center align-items-end">
+        <div class="mr-3">
+            <span><strong>Erstellt von:</strong> @Model.Owner</span>
+            <span><strong>letzte Änderung:</strong> @Model.LastChangesDate.ToShortDateString()</span>
+            <span><strong>Webseite:</strong> @Model.WebAddress</span>
+        </div>
+        <div>
+            <img src="@Model.Picture_1" width="200" height="200" />
+        </div>
     </div>
 </div>
