@@ -44,6 +44,33 @@ namespace ComnuyWebWithAPI.Controllers
             return View(model);
         }
 
+        public IActionResult ShowToolDetail(int toolId)
+        {
+            Tool toolFromDb;
+            List<ToolGroup> toolGroupsFromDb;
+            toolGroupsFromDb = _context.ToolGroups.ToList();
+
+            if (toolId != 0)
+            {
+                toolFromDb = _context.Tools.SingleOrDefault(x => x.Id == toolId);
+
+                System.Diagnostics.Debugger.Break();
+
+                if (toolFromDb != null)
+                {
+                    ViewBag.ToolGroups = toolGroupsFromDb;
+                    return View(toolFromDb);
+                } else
+                {
+                    return NotFound();
+                }
+            } 
+
+            ViewBag.ToolGroups = toolGroupsFromDb;
+
+            return View();
+        }
+
         [Authorize]
         public IActionResult MyContent()
         {
@@ -67,6 +94,7 @@ namespace ComnuyWebWithAPI.Controllers
             if (id != 0)
             {
                 var toolPostingFromDb = _context.Tools.SingleOrDefault(x => x.Id == id);
+
                 if (toolPostingFromDb.Owner != User.Identity.Name)
                 {
                     return Unauthorized();

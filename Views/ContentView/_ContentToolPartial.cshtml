@@ -3,7 +3,7 @@
     @{
         foreach (Tool tool in Model.Tools)
         {
-            <tr>
+            <tr role="button" onclick="showToolDetail(@tool.Id)">
                 <td>
                     <div style="display: flex; justify-content: center; align-items: center;">
                         <img class="rounded d-block img" width="100" height="80" src="@tool.Picture_1">

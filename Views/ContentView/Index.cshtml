@@ -39,6 +39,11 @@
             var url = '@Url.Action("Index")' + '?selectedType=' + selectedType;
             window.location.href = url;
         }
+
+        function showToolDetail(toolId) {
+            var url = '@Url.Action("ShowToolDetail")' + '?toolId=' + toolId;
+            window.location.href = url;
+        }
     </script>
 }
 
