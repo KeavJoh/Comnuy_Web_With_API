@@ -4,9 +4,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - ComnuyWebWithAPI</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/mdb.min.css" />
     <link rel="stylesheet" href="~/ComnuyWebWithAPI.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
+
+    @RenderSection("Styles", required: false)
 </head>
 <body>
     <header>
@@ -30,9 +33,34 @@
                 </div>
             </div>
         </nav>
+
+        <div id="intro"
+             class="bg-image shadow-1-strong"
+             style="
+              background-image: url(https://mdbootstrap.com/img/new/slides/024.jpg);
+              height: 400px;
+              ">
+            <div class="mask text-white"
+                 style="background-color: rgba(0, 0, 0, 0.6)">
+                <div class="
+                  container
+                  d-flex
+                  align-items-center
+                  justify-content-center
+                  text-center
+                  h-100
+                  ">
+                    <div class="text-white">
+                        <h1 class="mb-3">My Blog</h1>
+                        <h4 class="mb-4">Quidquid Latine dictum sit, altum videtur</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Background image -->
     </header>
     <div class="container">
-        <main role="main" class="pb-3">
+        <main role="main" class="my-5">
             @RenderBody()
         </main>
     </div>
