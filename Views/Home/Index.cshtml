@@ -1,4 +1,6 @@
-﻿@{
+﻿@model _MyContentViewModel
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -10,41 +12,96 @@
     <script src="~/js/plugins/multi-carousel.min.js"></script>
 }
 
-<div class="multi-carousel">
-    <div class="multi-carousel-inner">
-        <div class="multi-carousel-item">
-            <img src="https://mdbcdn.b-cdn.net/img/Photos/Thumbnails/Slides/1.webp"
-                 alt="Table Full of Spices"
-                 class="w-100" />
+<div class="container my-5">
+
+    <!--Section: Design Block-->
+    <section class="mb-10">
+        <p class="fs-1 fw-bold text-center mb-5">Read the latest in...</p>
+        <div class="
+          d-flex
+          justify-content-between
+          align-items-center align-items-xl-end
+          border-bottom
+          pb-4
+          mb-5
+        " style="border-bottom: 2px solid #f5f5f5 !important">
+            <h2 class="fw-bold mb-0">Photography</h2>
+            <h6 class="mb-0">
+                <a href="#!">Alle Tools <i class="fas fa-angle-right fa-xs ms-1"></i></a>
+            </h6>
         </div>
-        <div class="multi-carousel-item">
-            <img src="https://mdbcdn.b-cdn.net/img/Photos/Thumbnails/Slides/2.webp"
-                 alt="Winter Landscape"
-                 class="w-100" />
+        <div class="row gx-md-5">
+            @foreach (var tool in Model.RandomTools)
+            {
+                @if (Model.RandomTools.IndexOf(tool) == 0)
+                {
+                    <div class="col-md-12 col-lg-4">
+                        <div class="mb-5 mb-lg-0">
+                            <div class="bg-image hover-overlay ripple rounded-5 mb-4" data-mdb-ripple-color="light">
+                                <img class="w-100 rounded-5" src="@tool.Picture_1"
+                                     style="height: 225px; object-fit: cover" alt="Image placeholder" />
+                                <a href="#!">
+                                    <div class="mask" style="background-color: rgba(255, 255, 255, 0.1)"></div>
+                                </a>
+                            </div>
+                            <h6 class="text-muted text-uppercase small pb-1">
+                                <a href="#!" class="text-reset">@tool.Name</a>
+                            </h6>
+                            <h5 class="fw-bold mb-3">
+                                <a href="#!" class="text-reset">@tool.ShortDescription</a>
+                            </h5>
+                        </div>
+                    </div>
+                }
+                else if (Model.RandomTools.IndexOf(tool) == 1) 
+                {
+                    <div class="col-md-6 col-lg-4">
+                        <div class="mb-5 mb-lg-0">
+                            <div class="bg-image hover-overlay ripple rounded-5 mb-4" data-mdb-ripple-color="light">
+                                <img class="w-100 rounded-5" src="@tool.Picture_1"
+                                     style="height: 225px; object-fit: cover; object-position: top" alt="Image placeholder" />
+                                <a href="#!">
+                                    <div class="mask" style="background-color: rgba(255, 255, 255, 0.1)"></div>
+                                </a>
+                            </div>
+                            <h6 class="text-muted text-uppercase small pb-1">
+                                <a href="#!" class="text-reset">@tool.Name</a>
+                            </h6>
+                            <h5 class="fw-bold mb-3">
+                                <a href="#!" class="text-reset">
+                                    @tool.ShortDescription
+                                </a>
+                            </h5>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="col-md-6 col-lg-4">
+                        <div>
+                            <div class="bg-image hover-overlay ripple rounded-5 mb-4" data-mdb-ripple-color="light">
+                                <img class="w-100 rounded-5" src="@tool.Picture_1"
+                                     style="height: 225px; object-fit: cover" alt="Image placeholder" />
+                                <a href="#!">
+                                    <div class="mask" style="background-color: rgba(255, 255, 255, 0.1)"></div>
+                                </a>
+                            </div>
+                            <h6 class="text-muted text-uppercase small pb-1">
+                                <a href="#!" class="text-reset">@tool.Name</a>
+                            </h6>
+                            <h5 class="fw-bold mb-3">
+                                <a href="#!" class="text-reset">
+                                    @tool.ShortDescription
+                                </a>
+                            </h5>
+                        </div>
+                    </div>
+                }
+            }
         </div>
-        <div class="multi-carousel-item">
-            <img src="https://mdbcdn.b-cdn.net/img/Photos/Thumbnails/Slides/3.webp"
-                 alt="View of the City in the Mountains"
-                 class="w-100" />
-        </div>
-        <div class="multi-carousel-item">
-            <img src="https://mdbcdn.b-cdn.net/img/Photos/Thumbnails/Slides/4.webp"
-                 alt="Place Royale Bruxelles"
-                 class="w-100" />
-        </div>
-    </div>
-    <button class="carousel-control-prev"
-            type="button"
-            tabindex="0"
-            data-mdb-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    </button>
-    <button class="carousel-control-next"
-            type="button"
-            tabindex="0"
-            data-mdb-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    </button>
+    </section>
+    <!--Section: Design Block-->
+
 </div>
 
 
