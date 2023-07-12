@@ -1,18 +1,35 @@
-html {
-  font-size: 14px;
+.comnuyBackgroundColorGreen {
+    background-color: rgba(0,194,126,255)
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+.btnGreen {
+    background-color: rgba(0,194,126,255);
+    color: white;
 }
 
-html {
-  position: relative;
-  min-height: 100%;
+    .btnGreen:hover {
+        background-color: rgba(0,194,126,255);
+        color: rgba(57,85,107,255)
+    }
+
+.btnWhite {
+    background-color: white;
+    color: rgba(0,194,126,255);
 }
 
-body {
-  margin-bottom: 60px;
+    .btnWhite:hover {
+        background-color: white;
+        color: rgba(57,85,107,255)
+    }
+
+.comnuyTextColorGreen {
+    color: rgba(0,194,126,255) !important
+}
+
+.comnuyBackgroundColorGrey {
+    background-color: rgba(57,85,107,255)
+}
+
+.comnuyTextColorGrey {
+    color: rgba(57,85,107,255) !important
 }
