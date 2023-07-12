@@ -1,43 +1,51 @@
+:root {
+    --green: rgba(0,194,126,255);
+    --greenHeader: rgba(0, 194, 126, 0.6);
+    --white: white;
+    --grey: rgba(57,85,107,255);
+    --greyHoverCards: rgba(57, 85, 107, 0.1);
+}
+
 .comnuyBackgroundColorGreen {
-    background-color: rgba(0,194,126,255)
+    background-color: var(--green);
 }
 
 .comnuyBackgroundColorGreenHeader {
-    background-color: rgba(0, 194, 126, 0.6)
+    background-color: var(--greenHeader);
 }
 
 .btnGreen {
-    background-color: rgba(0,194,126,255);
-    color: white;
+    background-color: var(--green);
+    color: var(--white);
 }
 
     .btnGreen:hover {
-        background-color: rgba(0,194,126,255);
-        color: rgba(57,85,107,255)
+        background-color: var(--green);
+        color: var(--grey);
     }
 
 .btnWhite {
-    background-color: white;
-    color: rgba(0,194,126,255);
+    background-color: var(--white);
+    color: var(--green);
 }
 
     .btnWhite:hover {
-        background-color: white;
-        color: rgba(57,85,107,255)
+        background-color: var(--white);
+        color: var(--grey);
     }
 
 .comnuyTextColorGreen {
-    color: rgba(0,194,126,255) !important
+    color: var(--green) !important;
 }
 
 .comnuyBackgroundColorGrey {
-    background-color: rgba(57,85,107,255)
+    background-color: var(--grey);
 }
 
 .comnuyTextColorGrey {
-    color: rgba(57,85,107,255) !important
+    color: var(--grey) !important;
 }
 
 .comnuyBackgroundColorHoverGrey {
-    background-color: rgba(57, 85, 107, 0.1)
+    background-color: var(--greyHoverCards);
 }
