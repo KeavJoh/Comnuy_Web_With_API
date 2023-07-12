@@ -1,5 +1,9 @@
 .comnuyBackgroundColorGreen {
-    background-color: rgba(0,194,126,255)
+    background-color: #00c27e
+}
+
+.comnuyBackgroundColorGreenHeader {
+    background-color: rgba(0, 194, 126, 0.6)
 }
 
 .btnGreen {
