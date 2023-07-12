@@ -1,5 +1,5 @@
 .comnuyBackgroundColorGreen {
-    background-color: #00c27e
+    background-color: rgba(0,194,126,255)
 }
 
 .comnuyBackgroundColorGreenHeader {
@@ -36,4 +36,8 @@
 
 .comnuyTextColorGrey {
     color: rgba(57,85,107,255) !important
+}
+
+.comnuyBackgroundColorHoverGrey {
+    background-color: rgba(57, 85, 107, 0.1)
 }
