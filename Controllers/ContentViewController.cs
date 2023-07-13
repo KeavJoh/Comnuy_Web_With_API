@@ -220,6 +220,9 @@ namespace ComnuyWebWithAPI.Controllers
                 if (toolPostingFromDb.Owner != User.Identity.Name)
                 {
                     return Unauthorized();
+                } else if (toolPostingFromDb.Owner == null)
+                {
+                    return Unauthorized();
                 }
 
                 if (toolPostingFromDb != null)
