@@ -1,16 +1,12 @@
 ﻿@model _MyContentViewModel
 
-<div>
+<div class="mb-5">
     <a class="btn btn-primary" asp-controller="ContentView" asp-action="CreateOrEditTool">Neues Tool</a>
 </div>
 
-<div class="mt-4 mb-4">
-    <button class="btn btn-secondary">Meine Tools</button>
-</div>
 
-
-<table id="myContentToolTable" class="table table-bordered table-striped table-hover">
-    <thead class="table-dark">
+<table id="myContentToolTable" class="stripe hover" style="width:100%">
+    <thead>
         <tr>
             <th>Plattform</th>
             <th>Name</th>
@@ -24,10 +20,34 @@
     </tbody>
 </table>
 
+@*<div class="datatable">
+    <table id="example" class="mdl-data-table" style="width:100%">
+        <thead>
+            <tr>
+                <th class="th-sm">Plattform</th>
+                <th class="th-sm">Name</th>
+                <th class="th-sm">Kurzbeschreibung</th>
+                <th class="th-sm">Aktion</th>
+            </tr>
+        </thead>
+        <tbody id="datatable-body">
+            @await Html.PartialAsync("_MyContentToolPartial")
+        </tbody>
+    </table>
+</div>*@
+
 @section scripts {
     <script>
-        $(document).ready(function () {
-            $('#myContentToolTable').DataTable();
+        //$(document).ready(function () {
+        //    $('#myContentToolTable').DataTable();
+        //});
+        new DataTable('#myContentToolTable', {
+            order: [[0, 'asc']],
+            pagingType: 'full_numbers',
+            scrollX: true,
+            language: {
+                url: 'https://cdn.datatables.net/plug-ins/1.11.5/i18n/de-DE.json'
+            }
         });
     </script>
 }
