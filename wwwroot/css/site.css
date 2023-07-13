@@ -2,6 +2,7 @@
     --green: rgba(0,194,126,255);
     --greenHeader: rgba(0, 194, 126, 0.6);
     --white: white;
+    --red: rgba(220, 53, 69, 1);
     --grey: rgba(57,85,107,255);
     --greyHoverCards: rgba(57, 85, 107, 0.1);
 }
@@ -31,6 +32,16 @@
 
     .btnWhite:hover {
         background-color: var(--white);
+        color: var(--grey);
+    }
+
+.btnDanger {
+    background-color:var(--red);
+    color: var(--white);
+}
+
+    .btnDanger:hover {
+        background-color: var(--red);
         color: var(--grey);
     }
 
