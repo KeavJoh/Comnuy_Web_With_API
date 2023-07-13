@@ -30,5 +30,18 @@
                 url: 'https://cdn.datatables.net/plug-ins/1.11.5/i18n/de-DE.json'
             }
         });
+
+        function deleteToolFromDb(id) {
+            document.addEventListener('confirm.mdb.popconfirm', () => {
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("DeleteToolFromDb")",
+                    data: { id: id },
+                    success: function (msg) {
+                        location.reload();
+                    }
+                })
+            });
+        }
     </script>
 }

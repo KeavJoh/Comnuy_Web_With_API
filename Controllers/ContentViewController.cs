@@ -210,7 +210,7 @@ namespace ComnuyWebWithAPI.Controllers
             return RedirectToAction("MyContent");
         }
 
-        [Authorize]
+        [HttpPost]
         public IActionResult DeleteToolFromDb(int id)
         {
             if (id != 0)
@@ -249,7 +249,7 @@ namespace ComnuyWebWithAPI.Controllers
                 return BadRequest();
             }
 
-            return RedirectToAction("MyContent");
+            return Ok();
         }
     }
 }
