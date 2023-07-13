@@ -210,6 +210,7 @@ namespace ComnuyWebWithAPI.Controllers
             return RedirectToAction("MyContent");
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult DeleteToolFromDb(int id)
         {
