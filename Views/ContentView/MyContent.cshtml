@@ -20,27 +20,8 @@
     </tbody>
 </table>
 
-@*<div class="datatable">
-    <table id="example" class="mdl-data-table" style="width:100%">
-        <thead>
-            <tr>
-                <th class="th-sm">Plattform</th>
-                <th class="th-sm">Name</th>
-                <th class="th-sm">Kurzbeschreibung</th>
-                <th class="th-sm">Aktion</th>
-            </tr>
-        </thead>
-        <tbody id="datatable-body">
-            @await Html.PartialAsync("_MyContentToolPartial")
-        </tbody>
-    </table>
-</div>*@
-
 @section scripts {
     <script>
-        //$(document).ready(function () {
-        //    $('#myContentToolTable').DataTable();
-        //});
         new DataTable('#myContentToolTable', {
             order: [[0, 'asc']],
             pagingType: 'full_numbers',
