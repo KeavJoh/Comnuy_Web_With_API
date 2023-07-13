@@ -209,5 +209,44 @@ namespace ComnuyWebWithAPI.Controllers
 
             return RedirectToAction("MyContent");
         }
+
+        [Authorize]
+        public IActionResult DeleteToolFromDb(int id)
+        {
+            if (id != 0)
+            {
+                var toolPostingFromDb = _context.Tools.SingleOrDefault(x => x.Id == id);
+
+                if (toolPostingFromDb.Owner != User.Identity.Name)
+                {
+                    return Unauthorized();
+                }
+
+                if (toolPostingFromDb != null)
+                {
+
+                    if ( toolPostingFromDb.Picture_1 != "\\Pictures\\Tool\\Placeholder\\placeholder.png")
+                    {
+                        string webRootPath = _webHostEnvironment.WebRootPath;
+                        string absoluteImagePath = Path.Combine(webRootPath + "\\Pictures\\Tool\\" + toolPostingFromDb.Id);
+                        if (Directory.Exists(absoluteImagePath))
+                        {
+                            Directory.Delete(absoluteImagePath, recursive: true);
+                        }
+                    }
+
+                    _context.Tools.Remove(toolPostingFromDb);
+                    _context.SaveChanges();
+                } else
+                {
+                    return NotFound();
+                }
+            } else
+            {
+                return BadRequest();
+            }
+
+            return RedirectToAction("MyContent");
+        }
     }
 }
