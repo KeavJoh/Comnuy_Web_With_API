@@ -38,10 +38,21 @@
                     url: "@Url.Action("DeleteToolFromDb")",
                     data: { id: id },
                     success: function (msg) {
-                        location.reload();
+                        Swal.fire('Das Tool wurde gelöscht!', '', 'success').then((result) => {
+                            if (result.isConfirmed) {
+                                location.reload();
+                            }
+                        });
+                    },
+                    error: function (msg) {
+                        Swal.fire('Ups, da ist etwas schief gelaufen!', '', 'error')
                     }
-                })
+                });
             });
+        }
+
+        function showSuccessAlert() {
+            mdb.Alert.getInstance(document.getElementById("alert-success-delete-tool-from-db")).show();
         }
     </script>
 }
