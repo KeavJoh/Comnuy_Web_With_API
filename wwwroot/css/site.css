@@ -60,3 +60,8 @@
 .comnuyBackgroundColorHoverGrey {
     background-color: var(--greyHoverCards);
 }
+
+.toolPicture {
+    height: 225px;
+    object-fit: fill;
+}

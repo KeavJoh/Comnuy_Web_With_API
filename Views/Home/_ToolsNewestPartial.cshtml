@@ -1,7 +1,41 @@
 ﻿@model _MyContentViewModel
 
 <!--Section: Design Block-->
-<section class="mb-10">
+<div class="container mb-5 pt-5" style="margin-top: 58px">
+
+    <section class="mb-5">
+
+        <div class="text-center">
+            <i class="fas far fa-calendar-plus fa-2x mb-3 comnuyTextColorGreen"></i>
+            <h3 class="mb-5">Die neuesten Tools</h3>
+        </div>
+
+        <div class="row">
+            @foreach (var tool in Model.ToolsOrderByDate)
+            {
+                <div class="col-md-6 col-xl-3 mb-4 d-flex align-items-stretch">
+                    <div class="card w-100">
+                        <div class="bg-image hover-overlay ripple d-flex justify-content-center" data-mdb-ripple-color="light">
+                            <img class="img-fluid toolPicture" src="@tool.Picture_1" alt="Image placeholder">
+                            <a asp-controller="ContentView" asp-action="ShowToolDetail" asp-route-toolId="@tool.Id" class="text-reset">
+                                <div class="mask comnuyBackgroundColorHoverGrey"></div>
+                            </a>
+                        </div>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">@tool.Name</h5>
+                            <p class="card-text lead">@tool.LastChangesDate.Date.ToString("dd.MM.yyyy")</p>
+                            <a asp-controller="ContentView" asp-action="ShowToolDetail" asp-route-toolId="@tool.Id" class="btn btnGreen mb-1">Details</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+    </section>
+
+</div>
+
+@*<section class="mb-10">
     <p class="fs-1 fw-bold text-center mb-5">Tools</p>
     <div class="
           d-flex
@@ -85,5 +119,5 @@
             }
         }
     </div>
-</section>
+</section>*@
 <!--Section: Design Block-->

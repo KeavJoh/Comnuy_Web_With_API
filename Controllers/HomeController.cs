@@ -22,9 +22,9 @@ namespace ComnuyWebWithAPI.Controllers
         public IActionResult Index()
         {
             List<Tool> toolsFromDb = _context.Tools.ToList();
-            List<Tool> toolOrderByDateFromDb = _context.Tools.OrderByDescending(x => x.LastChangesDate).Take(3).ToList();
+            List<Tool> toolOrderByDateFromDb = _context.Tools.OrderByDescending(x => x.LastChangesDate).Take(4).ToList();
             Random random = new();
-            var randomTools = toolsFromDb.OrderBy(x => random.Next()).Take(3).ToList();
+            var randomTools = toolsFromDb.OrderBy(x => random.Next()).Take(4).ToList();
 
             var model = new _MyContentViewModel
             {
