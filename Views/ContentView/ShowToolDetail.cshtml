@@ -1,6 +1,43 @@
-﻿@model ComnuyWebWithAPI.Models.Tool
+﻿@model _ContentDeliveryModel
 
-<div class="row">
+
+
+<!--Section: Design Block-->
+<section class="mb-10">
+    <div class="row">
+        <div class="col-lg-6 col-xl-7 pe-lg-4 mb-5 mb-lg-0">
+            <h2 class="fw-bold mb-3">@Model.Tool.Name</h2>
+            <p class="mb-4">Kategorie: <span><strong>@Model.ToolGroup.Name</strong></span></p>
+            <div class="border rounded-5 p-4 mb-4" style="max-width: 500px;">
+                <h6 class="comnuyTextColorGreen"><strong>Kurzbeschreibung</strong></h6>
+                <p>@Model.Tool.ShortDescription</p>
+                <h6 class="comnuyTextColorGreen"><strong>Beschreibung</strong></h6>
+                <p>@Model.Tool.Description</p>
+            </div>
+            <p class="mb-4">Erstellt von: <span><strong>@Model.Tool.Owner</strong></span></p>
+            <p class="mb-4">Letzte Änderung am: <span><strong>@Model.Tool.LastChangesDate.Date.ToShortDateString()</strong></span></p>
+            <p class="mb-4">Letzte Änderung von: <span><strong>@Model.Tool.LastChangeUser</strong></span></p>
+            <div class="mt-4 pt-2" style="max-width: 500px;">
+                <div class="mt-3">
+                    <div class="mb-5">
+                        @if (Model.Tool.WebAddress != null)
+                        {
+                            <a href="@Model.Tool.WebAddress" class="btn btnGreen"><i class="fas fa-location-arrow me-3"></i>Zur Quelle</a>
+                        }
+                        <a href="@Model.Tool.WebAddress" class="btn btnGreen"><i class="fas fa-toolbox me-3"></i>In den Werkzeugkasten</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-xl-5 ps-lg-4">
+            <div class="bg-image hover-overlay ripple d-flex justify-content-center" data-mdb-ripple-color="light">
+                <img class="img-fluid toolPicture" src="@Model.Tool.Picture_1" alt="Image placeholder">
+            </div>
+        </div>
+    </div>
+</section>
+
+@*<div class="row">
     <div class="col-6 d-flex flex-column justify-content-center">
         <h3>@Model.Name</h3>
         <h4>@Model.ShortDescription</h4>
@@ -15,4 +52,4 @@
             <img src="@Model.Picture_1" width="200" height="200" />
         </div>
     </div>
-</div>
+</div>*@
