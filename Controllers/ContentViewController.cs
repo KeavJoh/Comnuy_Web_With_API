@@ -34,7 +34,7 @@ namespace ComnuyWebWithAPI.Controllers
             }
             toolGroupsFromDb = _context.ToolGroups.ToList();
 
-            var model = new _MyContentViewModel
+            var model = new _ContentDeliveryModel
             {
                 Tools = toolsFromDb,
                 ToolGroups = toolGroupsFromDb,
@@ -47,26 +47,26 @@ namespace ComnuyWebWithAPI.Controllers
         public IActionResult ShowToolDetail(int toolId)
         {
             Tool toolFromDb;
-            ToolGroup toolGroupFromDb;
-            toolGroupFromDb = _context.ToolGroups.SingleOrDefault(x => x.Id == toolId);
+            ToolGroup toolGroup;
 
             if (toolId != 0)
             {
                 toolFromDb = _context.Tools.SingleOrDefault(x => x.Id == toolId);
 
-                System.Diagnostics.Debugger.Break();
-
                 if (toolFromDb != null)
                 {
-                    ViewBag.ToolGroups = toolGroupFromDb;
-                    return View(toolFromDb);
+                    toolGroup = _context.ToolGroups.SingleOrDefault(x => x.Id == toolFromDb.ToolGroup);
+                    var model = new _ContentDeliveryModel
+                    {
+                        Tool = toolFromDb,
+                        ToolGroup = toolGroup
+                    };
+                    return View(model);
                 } else
                 {
                     return NotFound();
                 }
             } 
-
-            ViewBag.ToolGroups = toolGroupFromDb;
 
             return View();
         }
@@ -77,7 +77,7 @@ namespace ComnuyWebWithAPI.Controllers
             var toolsFromDb = _context.Tools.Where(x => x.Owner == User.Identity.Name).ToList();
             var toolGroupsFromDb = _context.ToolGroups.ToList();
 
-            var model = new _MyContentViewModel
+            var model = new _ContentDeliveryModel
             {
                 Tools = toolsFromDb,
                 ToolGroups = toolGroupsFromDb

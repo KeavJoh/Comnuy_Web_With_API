@@ -26,7 +26,7 @@ namespace ComnuyWebWithAPI.Controllers
             Random random = new();
             var randomTools = toolsFromDb.OrderBy(x => random.Next()).Take(4).ToList();
 
-            var model = new _MyContentViewModel
+            var model = new _ContentDeliveryModel
             {
                 RandomTools = randomTools,
                 ToolsOrderByDate = toolOrderByDateFromDb
