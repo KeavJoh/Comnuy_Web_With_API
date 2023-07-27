@@ -9,13 +9,7 @@
                         <img class="rounded d-block img" width="100" height="80" src="@tool.Picture_1">
                     </div>
                 </td>
-                <td class="text-center align-middle">
-                    <div>
-                        <span style="display: block;">@tool.Name</span>
-                        <span style="display: block;">@tool.ShortDescription</span>
-                    </div>
-                </td>
-                <td class="text-center align-middle">
+                <td class="align-middle">
                     @{
                         var toolGroup = Model.ToolGroups.FirstOrDefault(tg => tg.Id == tool.ToolGroup);
                         if (toolGroup != null)
@@ -24,8 +18,16 @@
                         }
                     }
                 </td>
-                <td class="text-center align-middle">@tool.Owner</td>
-                <td class="text-center align-middle">@tool.LastChangesDate.ToShortDateString()</td>
+                <td class="align-middle">
+                    <div>
+                        <span style="display: block;">@tool.Name</span>
+                    </div>
+                </td>
+                <td class="align-middle">
+                    <div>
+                        <span style="display: block;">@tool.ShortDescription</span>
+                    </div>
+                </td>
             </tr>
         }
     }
