@@ -4,9 +4,15 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="container my-5">
-    <partial name="_ToolsNewestPartial" />
-    <partial name="_ToolsRecommendationsPartial" />
+<partial name="_HeaderMainBackgroundPartial" />
+
+<div class="container">
+    <main role="main" class="my-5">
+        <div class="container my-5">
+            <partial name="_ToolsNewestPartial" />
+            <partial name="_ToolsRecommendationsPartial" />
+        </div>
+    </main>
 </div>
 
 

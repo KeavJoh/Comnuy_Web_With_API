@@ -1,24 +1,30 @@
 ﻿@model _ContentDeliveryModel
 
-<div class="mb-5">
-    <a class="btn btnGreen" asp-controller="ContentView" asp-action="CreateOrEditTool"><i class="fas fa-plus me-3"></i>Neues Tool</a>
+<partial name="_HeaderMainBackgroundPartial" />
+
+<div class="container">
+    <main role="main" class="my-5">
+        <div class="mb-5">
+            <a class="btn btnGreen" asp-controller="ContentView" asp-action="CreateOrEditTool"><i class="fas fa-plus me-3"></i>Neues Tool</a>
+        </div>
+
+
+        <table id="myContentToolTable" class="stripe hover" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Kurzbeschreibung</th>
+                    <th>Plattform</th>
+                    <th>Aktionen</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <partial name="_MyContentToolPartial" />
+            </tbody>
+        </table>
+    </main>
 </div>
-
-
-<table id="myContentToolTable" class="stripe hover" style="width:100%">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Kurzbeschreibung</th>
-            <th>Plattform</th>
-            <th>Aktionen</th>
-        </tr>
-    </thead>
-
-    <tbody>
-        <partial name="_MyContentToolPartial" />
-    </tbody>
-</table>
 
 @section scripts {
     <script>

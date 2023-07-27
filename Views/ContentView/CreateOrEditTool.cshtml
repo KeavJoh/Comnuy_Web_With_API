@@ -1,90 +1,96 @@
 ﻿@model ComnuyWebWithAPI.Models.Tool 
 
-<form asp-controller="ContentView" asp-action="SubmitCreateOrEditTool" enctype="multipart/form-data">
+<partial name="_HeaderMainBackgroundPartial" />
 
-    <div class="card-header">
-        <h5>Tool erstellen oder bearbeiten</h5>
-    </div>
+<div class="container">
+    <main role="main" class="my-5">
+        <form asp-controller="ContentView" asp-action="SubmitCreateOrEditTool" enctype="multipart/form-data">
 
-    <div class="card-body mt-3">
-
-        <input hidden asp-for="Id" />
-
-            @{
-            if (Model != null && Model.Id != 0 && Model.Picture_1 != null)
-            {
-                <div class="d-flex justify-content-start mb-5">
-                    <img class="rounded d-block img border" width="200" height="200" src="@Model.Picture_1">
-                </div>
-            } 
-            
-            }
-
-        <div class="row mb-2">
-            <div class="col">
-                <input class="form-control" asp-for="Name" type="text" placeholder="Name des Tool" />
+            <div class="card-header">
+                <h5>Tool erstellen oder bearbeiten</h5>
             </div>
-            <div class="col">
-                <input id="shortDescriptionInput" class="form-control" asp-for="ShortDescription" type="text" maxlength="100" placeholder="Kurze Beschreibung" />
-                <small id="charCount" class="text-muted">
-                    <span>0</span> / 100 Zeichen
-                </small>
-            </div>
-        </div>
 
-        <div class="row mb-3">
-            <div class="col">
-                <textarea rows="6" class="form-control" asp-for="Description" placeholder="Ausführliche Beschreibung"></textarea>
-            </div>
-        </div>
+            <div class="card-body mt-3">
 
-        <div class="row mb-3">
-            <div class="col">
-                <input class="form-control" asp-for="WebAddress" type="url" placeholder="Webseite" />
-            </div>
-            <div class="col">
-                <select class="form-control form-select" asp-for="ToolGroup">
-                    @foreach (var toolGroup in ViewBag.ToolGroups)
+                <input hidden asp-for="Id" />
+
+                @{
+                    if (Model != null && Model.Id != 0 && Model.Picture_1 != null)
                     {
-                        if (toolGroup.Id != 1)
-                        {
-                            <option value="@toolGroup.Id">@toolGroup.Name</option>
-                        }
+                        <div class="d-flex justify-content-start mb-5">
+                            <img class="rounded d-block img border" width="200" height="200" src="@Model.Picture_1">
+                        </div>
                     }
-                </select>
+
+                }
+
+                <div class="row mb-2">
+                    <div class="col">
+                        <input class="form-control" asp-for="Name" type="text" placeholder="Name des Tool" />
+                    </div>
+                    <div class="col">
+                        <input id="shortDescriptionInput" class="form-control" asp-for="ShortDescription" type="text" maxlength="100" placeholder="Kurze Beschreibung" />
+                        <small id="charCount" class="text-muted">
+                            <span>0</span> / 100 Zeichen
+                        </small>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col">
+                        <textarea rows="6" class="form-control" asp-for="Description" placeholder="Ausführliche Beschreibung"></textarea>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col">
+                        <input class="form-control" asp-for="WebAddress" type="url" placeholder="Webseite" />
+                    </div>
+                    <div class="col">
+                        <select class="form-control form-select" asp-for="ToolGroup">
+                            @foreach (var toolGroup in ViewBag.ToolGroups)
+                            {
+                                if (toolGroup.Id != 1)
+                                {
+                                    <option value="@toolGroup.Id">@toolGroup.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                @{
+                    if (Model != null && Model.Id != 0 && Model.Picture_1 != null && Model.Picture_1 == "\\Pictures\\Tool\\Placeholder\\placeholder.png")
+                    {
+                        <div>
+                            <p class="text-info">Durch das Auswählen eines neuen Bildes, wird der Platzhalter ersetzt!</p>
+                        </div>
+                    }
+                    else if (Model != null && Model.Id != 0 && Model.Picture_1 != null)
+                    {
+                        <div>
+                            <p class="text-danger">Durch das Auswählen eines neuen Bildes, wird das vorhandene ersetzt!</p>
+                        </div>
+                    }
+
+                }
+
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="formFile">Bild</label>
+                    <input type="file" class="form-control" id="formFile" name="file" @*multiple*@ accept="image/*" @*max="5"*@>
+                </div>
+
+                @*        <div id="imagePreview"></div>*@
+
+                <div class="card-footer mt-4">
+                    <button class="btn btn-primary" type="submit">Speichern</button>
+                </div>
+
             </div>
-        </div>
 
-        @{
-            if (Model != null && Model.Id != 0 && Model.Picture_1 != null && Model.Picture_1 == "\\Pictures\\Tool\\Placeholder\\placeholder.png")
-            {
-                <div>
-                    <p class="text-info">Durch das Auswählen eines neuen Bildes, wird der Platzhalter ersetzt!</p>
-                </div>
-            }
-            else if (Model != null && Model.Id != 0 && Model.Picture_1 != null)
-            {
-                <div>
-                    <p class="text-danger">Durch das Auswählen eines neuen Bildes, wird das vorhandene ersetzt!</p>
-                </div>
-            }
-
-        }
-
-        <div class="input-group mb-3">
-            <label class="input-group-text" for="formFile">Bild</label>
-            <input type="file" class="form-control" id="formFile" name="file" @*multiple*@ accept="image/*" @*max="5"*@>
-        </div>
-
-@*        <div id="imagePreview"></div>*@
-
-        <div class="card-footer mt-4">
-            <button class="btn btn-primary" type="submit">Speichern</button>
-        </div>
-
-    </div>
-
-</form>
+        </form>
+    </main>
+</div>
 
 <script>
 
