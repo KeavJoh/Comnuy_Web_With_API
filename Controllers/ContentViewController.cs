@@ -2,6 +2,8 @@
 using ComnuyWebWithAPI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Processing;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using Microsoft.EntityFrameworkCore;
@@ -154,9 +156,27 @@ namespace ComnuyWebWithAPI.Controllers
 
                     uniqueFileName = $"{tool.Name}_{nextDbIdString}{fileExtension}";
                     filePath = Path.Combine(toolFolder, uniqueFileName);
-                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+
+
+                    using (var fileStream = file.OpenReadStream())
                     {
-                        file.CopyTo(fileStream);
+                        using (Image image = Image.Load(fileStream))
+                        {
+                            // Hier wird das Bild auf die Zielgröße skaliert (kann je nach Bedarf angepasst werden)
+                            int targetWidth = 250;
+                            int targetHeight = 225;
+                            image.Mutate(x => x.Resize(new ResizeOptions
+                            {
+                                Mode = ResizeMode.BoxPad,
+                                Size = new Size(targetWidth, targetHeight)
+                            }));
+
+                            // Speichern des komprimierten Bildes als PNG
+                            using (var pngFileStream = new FileStream(filePath, FileMode.Create))
+                            {
+                                image.SaveAsPng(pngFileStream);
+                            }
+                        }
                     }
 
                     tool.Picture_1 = Path.Combine("\\Pictures\\Tool\\", toolFolderString, uniqueFileName);
