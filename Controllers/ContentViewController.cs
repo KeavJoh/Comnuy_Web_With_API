@@ -272,5 +272,24 @@ namespace ComnuyWebWithAPI.Controllers
 
             return Ok();
         }
+
+        [Authorize]
+        public IActionResult FavoritesContentTools()
+        {
+            var favoriteToolIds = _context.ToolFavoritesFromUsers
+                .Where(x => x.UserName == User.Identity.Name)
+                .Select(x => x.ToolId)
+                .ToList();
+            var favoriteToolsFromDb = _context.Tools.Where(tool => favoriteToolIds.Contains(tool.Id)).ToList();
+            var toolGroupsFromDb = _context.ToolGroups.ToList();
+
+            var model = new _ContentDeliveryModel
+            {
+                Tools = favoriteToolsFromDb,
+                ToolGroups = toolGroupsFromDb
+            };
+
+            return View(model);
+        }
     }
 }

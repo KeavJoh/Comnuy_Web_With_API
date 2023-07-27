@@ -27,6 +27,9 @@
                     <li>
                         <a class="dropdown-item comuyTextColorGrey" asp-controller="ContentView" asp-action="MyContent">Mein Content</a>
                     </li>
+                    <li>
+                        <a class="dropdown-item comuyTextColorGrey" asp-controller="ContentView" asp-action="FavoritesContentTools">Werkzeugkasten</a>
+                    </li>
                     <li><hr class="dropdown-divider" /></li>
                     <li>
                         <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
