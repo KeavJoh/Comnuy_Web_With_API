@@ -1,4 +1,7 @@
 ﻿@model _ContentDeliveryModel
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 
 <partial name="_HeaderSectionBackgroundPartial" />
 
@@ -25,7 +28,11 @@
                                 {
                                     <a href="@Model.Tool.WebAddress" class="btn btnGreen"><i class="fas fa-location-arrow me-3"></i>Zur Quelle</a>
                                 }
-                                <a href="@Model.Tool.WebAddress" class="btn btnGreen"><i class="fas fa-toolbox me-3"></i>In den Werkzeugkasten</a>
+                                @if (SignInManager.IsSignedIn(User))
+                                {
+                                    <a href="@Model.Tool.WebAddress" class="btn btnGreen"><i class="fas fa-toolbox me-3"></i>In den Werkzeugkasten</a>
+
+                                }
                             </div>
                         </div>
                     </div>
