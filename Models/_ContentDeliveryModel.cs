@@ -9,5 +9,6 @@
         public List<ToolGroup> ToolGroups { get; set; }
         public ToolGroup ToolGroup { get; set; }
         public int SelectedToolGroupId { get; set; }
+        public bool IsFavoriteForUser { get; set; }
     }
 }

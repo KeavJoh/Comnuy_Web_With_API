@@ -30,8 +30,13 @@
                                 }
                                 @if (SignInManager.IsSignedIn(User))
                                 {
-                                    <a href="@Model.Tool.WebAddress" class="btn btnGreen"><i class="fas fa-toolbox me-3"></i>In den Werkzeugkasten</a>
-
+                                    if (Model.IsFavoriteForUser)
+                                    {
+                                        <a class="btn btnDanger" asp-controller="ContentView" asp-action="CheckAndSetFavoriteTool" asp-route-toolId="@Model.Tool.Id"><i class="fas fa-toolbox me-3"></i>Aus dem Werkzeugkasten entfernen</a>
+                                    } else
+                                    {
+                                        <a class="btn btnGreen" asp-controller="ContentView" asp-action="CheckAndSetFavoriteTool" asp-route-toolId="@Model.Tool.Id"><i class="fas fa-toolbox me-3"></i>In den Werkzeugkasten legen</a>
+                                    }
                                 }
                             </div>
                         </div>

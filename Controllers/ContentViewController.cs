@@ -50,6 +50,7 @@ namespace ComnuyWebWithAPI.Controllers
         {
             Tool toolFromDb;
             ToolGroup toolGroup;
+            bool checkIfFavoriteExist;
 
             if (toolId != 0)
             {
@@ -57,11 +58,13 @@ namespace ComnuyWebWithAPI.Controllers
 
                 if (toolFromDb != null)
                 {
+                    checkIfFavoriteExist = _context.ToolFavoritesFromUsers.Any(x => x.ToolId == toolId && x.UserName == User.Identity.Name);
                     toolGroup = _context.ToolGroups.SingleOrDefault(x => x.Id == toolFromDb.ToolGroup);
                     var model = new _ContentDeliveryModel
                     {
                         Tool = toolFromDb,
-                        ToolGroup = toolGroup
+                        ToolGroup = toolGroup,
+                        IsFavoriteForUser = checkIfFavoriteExist
                     };
                     return View(model);
                 } else
@@ -290,6 +293,36 @@ namespace ComnuyWebWithAPI.Controllers
             };
 
             return View(model);
+        }
+
+        [Authorize]
+        public IActionResult CheckAndSetFavoriteTool(int toolId)
+        {
+            var currentUser = User.Identity.Name;
+            bool checkIfFavoriteExist = _context.ToolFavoritesFromUsers.Any(x => x.ToolId == toolId && x.UserName == currentUser);
+
+            if (checkIfFavoriteExist)
+            {
+                var exisitngFavoriteTool = _context.ToolFavoritesFromUsers.FirstOrDefault(x => x.ToolId == toolId && x.UserName == currentUser);               
+
+                _context.ToolFavoritesFromUsers.Remove(exisitngFavoriteTool);
+                _context.SaveChanges();
+
+                return RedirectToAction("ShowToolDetail", new { toolId = toolId });
+            }
+            else
+            {
+                var newToolFavorite = new ToolFavorites
+                {
+                    ToolId = toolId,
+                    UserName = currentUser
+                };
+
+                _context.ToolFavoritesFromUsers.Add(newToolFavorite);
+                _context.SaveChanges();
+
+                return RedirectToAction("ShowToolDetail", new { toolId = toolId });
+            }
         }
     }
 }
